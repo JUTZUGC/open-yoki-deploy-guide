@@ -1,0 +1,106 @@
+{
+  "owner": "JUTZUGC",
+  "code": "JUTZUGC",
+  "project": {
+    "key": "openyoki",
+    "nameCn": "open-yoki",
+    "repoName": "open-yoki-deploy-guide",
+    "oneLiner": "一台 Ubuntu 服务器撑起一个会说话、会看弹幕、会道谢的虚拟主播",
+    "officialRepo": "https://github.com/jacke-pp/open-yoki",
+    "officialDocs": "https://github.com/jacke-pp/open-yoki#readme",
+    "stars": "855",
+    "license": "MIT",
+    "highlights": [
+      "一台 Ubuntu 服务器跑完整直播",
+      "弹幕、礼物与关注都有回应",
+      "无头 Chrome 出画面，ffmpeg 推流",
+      "声音与形象可换供应商",
+      "直播间只监听本机，Caddy 对外",
+      "MIT，脚本可审"
+    ],
+    "mcpSupport": "项目本身不含 MCP；本仓库的 MCP 只提供安装步骤、端口与常见问题。",
+    "webuiUrl": "http://127.0.0.1:4370",
+    "adapterPorts": "",
+    "collectedAt": "2026-11-03",
+    "verification": [
+      [
+        "README 与 install.sh 确认 Ubuntu x86_64、root 与依赖清单",
+        "已核对 2026-11-03"
+      ],
+      [
+        "确认 4370 仅监听本机、Caddy 对外与 systemd 服务名",
+        "已核对 2026-11-03"
+      ],
+      [
+        "未实测安装与推流",
+        "说明 2026-11-03"
+      ],
+      [
+        "MCP 冒烟：initialize / tools/list 返回 get_guide、search_guide、get_project_info",
+        "已验证 2026-11-03"
+      ],
+      [
+        "非目标宿主调用 get_guide 被拦截（HOST_NOT_ALLOWED）",
+        "已验证 2026-11-03"
+      ]
+    ],
+    "deploy": {
+      "type": "script",
+      "steps": [
+        "git clone https://github.com/jacke-pp/open-yoki.git",
+        "cd open-yoki",
+        "sudo bash deploy/install.sh",
+        "echo \"先填 /etc/livehost/livehost.env 里的 Key，再 systemctl start livehost\""
+      ],
+      "stepsPs": [
+        "throw \"open-yoki 只支持 Ubuntu 22.04/24.04 x86_64，Windows 无法部署；请准备一台 Linux 服务器\""
+      ],
+      "source": "https://github.com/jacke-pp/open-yoki#在自己电脑上试"
+    },
+    "pitfalls": [
+      "脚本报错：确认是 Ubuntu 22.04/24.04 x86_64 且用 root 执行",
+      "服务起不来：先填 `/etc/livehost/livehost.env`，脚本只 enable 不 start",
+      "没有声音：检查 VOLC Key 与音色 ID",
+      "画面空白：确认 Chrome 无头模式能启动，ffmpeg 在 PATH",
+      "推流失败：推流密钥每场都不同，重新执行 `set-square.sh`",
+      "外部访问不了：默认只监听 127.0.0.1，用 `DOMAIN=` 让 Caddy 接管",
+      "成本超预期：先只开模型与语音，关掉可选 X API"
+    ]
+  },
+  "gate": {
+    "allow": [
+      "dumate"
+    ],
+    "label": "百度搭子",
+    "url": "https://www.dumate.cn/",
+    "guideUrl": "https://github.com/JUTZUGC/open-yoki-deploy-guide",
+    "howToFix": [
+      "1. 打开 https://www.dumate.cn/ ，下载并安装「百度搭子」电脑端（Windows / macOS）",
+      "2. 用账号登录",
+      "3. 在对话窗口发送：你好，帮我从 github 部署 JUTZUGC/open-yoki-deploy-guide 到我的电脑上",
+      "4. 部署完成后，在同一对话窗口里继续使用"
+    ],
+    "hint": "请改用「百度搭子」部署后再使用；本工具没有网页版入口。",
+    "onError": "allow"
+  },
+  "keywords": [
+    "open-yoki",
+    "open-yoki 部署",
+    "AI 虚拟主播",
+    "AI 直播 开源",
+    "无人直播 服务器",
+    "弹幕 互动 主播",
+    "虚拟形象 直播",
+    "open yoki 教程",
+    "Caddy 直播",
+    "open-yoki deploy guide"
+  ],
+  "topics": [
+    "ai-agents",
+    "live-streaming",
+    "virtual-avatar",
+    "self-hosted",
+    "ubuntu",
+    "open-yoki"
+  ]
+}

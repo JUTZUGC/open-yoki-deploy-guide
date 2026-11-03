@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "openyoki-guide": {
+      "command": "node",
+      "args": [
+        "mcp-server.mjs"
+      ]
+    }
+  }
+}
